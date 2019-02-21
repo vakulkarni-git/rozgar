@@ -10,6 +10,9 @@
       <nav class="mdl-navigation">
         <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Home</router-link>
         <router-link class="mdl-navigation__link" to="/post" @click.native="hideMenu">Post a picture</router-link>
+        <router-link class="mdl-navigation__link" to="/newview1" @click.native="hideMenu">NewView1</router-link>
+        <router-link class="mdl-navigation__link" to="/newview2" @click.native="hideMenu">NewView2</router-link>
+        <router-link class="mdl-navigation__link" to="/newview3" @click.native="hideMenu">NewView3</router-link>
       </nav>
     </div>
     <main class="mdl-layout__content">
