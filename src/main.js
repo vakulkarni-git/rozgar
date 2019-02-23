@@ -21,7 +21,7 @@ Vue.config.productionTip = false
 new Vue({
   el: '#app',
   firebase: {
-    worker: database.ref('worker').orderByChild('created_at').limitToLast(10)
+    worker: database.ref('SME').orderByChild('created_at').limitToLast(10)
   },
   router,
   template: '<App/>',

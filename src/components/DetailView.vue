@@ -1,46 +1,35 @@
 <template>
   <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--8-col">
-      <div class="picture">
-        <img :src="worker.url" />
-      </div>
-      <div class="info">
-        <span>{{ worker.info }}</span>
-      </div>
-    </div>
     <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-      <div class="comment">
-        <span>{{ worker.comment }}</span>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-          <label for="skill" class="mdl-textfield__label" style="font-size:large;">
-          just
-          </label>          
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-          <label for="skill" class="mdl-textfield__label" style="font-size:large;">
-          just
-          </label>
-      </div>
-      <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-          <label for="skill" class="mdl-textfield__label" style="font-size:large;">
-          just
-          </label>
-      </div>
-      <div class="actions">
-        <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/post">
-          SUBMIT
-        </router-link>
+      <div v-for="labourer in this.getLabourers()" class="image-card">
+          <div class="image-card__comment mdl-card__actions">
+            <span>{{ labourer.name }}</span>
+          </div>
+          <div class="image-card__comment mdl-card__actions">
+            <span>{{ labourer.phone_number }}</span>
+          </div>
       </div>
     </div>
   </div>
 </template>
 <script>
   import { find } from 'lodash'
+  import { database } from '@/services/firebase'
+
   export default {
+    methods: {
+      getLabourers () {
+        if (this.worker) {
+          this.labourers = database.ref(this.worker.comment).orderByChild('id').limitToLast(10)
+        }
+        console.log('DetailView', this.labourers)
+        return this.labourers
+      }
+    },
     data () {
       return {
-        worker: null
+        worker: null,
+        labourers: null
       }
     },
     mounted () {

@@ -25,8 +25,10 @@
       getWorkers () {
         if (navigator.onLine) {
           this.saveWorkersToCache()
+          console.log('HomeView', JSON.stringify(this.$root.worker))
           return this.$root.worker
         } else {
+          console.log('HomeView', localStorage.getItem('workers'))
           return JSON.parse(localStorage.getItem('workers'))
         }
       },

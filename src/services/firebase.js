@@ -1,12 +1,12 @@
 import firebase from 'firebase'
 
 var config = {
-  apiKey: 'AIzaSyCXS1xOsKn5eIImDo77agrp_jQT0dp7VKw',
-  authDomain: 'rozgar-6df19.firebaseapp.com',
-  databaseURL: 'https://rozgar-6df19.firebaseio.com',
-  projectId: 'rozgar-6df19',
-  storageBucket: '',
-  messagingSenderId: '15682470475'
+  apiKey: 'AIzaSyD-8-x2EfBRZgeJo0D8AKYxtwKGv3cBxe0',
+  authDomain: 'rojgar-1c7c3.firebaseapp.com',
+  databaseURL: 'https://rojgar-1c7c3.firebaseio.com',
+  projectId: 'rojgar-1c7c3',
+  storageBucket: 'rojgar-1c7c3.appspot.com',
+  messagingSenderId: '541814921855'
 }
 
 firebase.initializeApp(config)
