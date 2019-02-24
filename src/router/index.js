@@ -13,7 +13,7 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/',
+      path: '/newview1',
       name: 'home',
       component: HomeView
     },
@@ -33,7 +33,7 @@ export default new Router({
       component: CameraView
     },
     {
-      path: '/newview1',
+      path: '/',
       name: 'newview1',
       component: NewView1
     },
