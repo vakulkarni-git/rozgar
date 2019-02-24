@@ -20,10 +20,16 @@
     </form>
     <div>
         From: 
-        <input v-model="from" type="date" >
-       To: 
-        <input v-model="to" type="date">
+       <input v-model="from" type="date">
+       <meta name="viewport" content="width=device-width, initial-scale=1">
+<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
+<div class="w3-panel w3-red">
+  <h3>Caution!</h3>
+  <p>Select appropriate Dates.</p>
+</div>
      </div>
+       To: 
+        <input v-model="to" type="date"> 
       <div v-for="labourer in this.getLabourers()" class="image-card">
           <div class="image-card__comment mdl-card__actions">
             <input type="radio" @click.prevent="postWorkAppointment(labourer.id, labourer.id, labourer.name, from, to, labourer.skill)"><span>{{ labourer.name }}</span>
@@ -37,6 +43,7 @@
   </form>
 </template>
 <script>
+  
   import { find } from 'lodash'
   import { database } from '@/services/firebase'
   import postWorkAppointment from '@/mixins/postWorkAppointment'
@@ -84,6 +91,7 @@
       this.saveLabourersToCache()
     }
   }
+
 </script>
 <style scoped>
   .waiting {
@@ -156,7 +164,7 @@ label {
 }
 
 .mdl-selectfield__select:hover{
-  background-color: rgb(206, 240, 253);
+  background-color: rgb(29, 170, 226);
   color: white;
   padding: 12px;
   margin: 10px 0;
@@ -167,6 +175,17 @@ label {
   font-size: 17px;
 }
 
+.image-card__comment mdl-card__actions:hover{
+  background-color: rgb(29, 170, 226);
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
 .image-card__comment mdl-card__actions:hover{
   background-color: #45a049;
 }
