@@ -1,4 +1,5 @@
 <template>
+  <form>
   <div class="mdl-grid">
     <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
     <form>
@@ -20,14 +21,13 @@
     </form>
     <div>
         From: 
-        <input type="date">
+        <input v-model="from" type="date">
        To: 
-        <input type="date">
+        <input v-model="to" type="date">
      </div>
       <div v-for="labourer in this.getLabourers()" class="image-card">
           <div class="image-card__comment mdl-card__actions">
-              
-            <button><span>{{ labourer.name }}</span></button>
+            <button @click.prevent="postWorkAppointment(labourer.id, labourer.id, labourer.name, from, to, labourer.skill)"><span>{{ labourer.name }}</span></button>
           </div>
           <div class="image-card__comment mdl-card__actions">
             <span>{{ labourer.skill }}</span>
@@ -35,12 +35,15 @@
       </div>
     </div>
   </div>
+  </form>
 </template>
 <script>
   import { find } from 'lodash'
   import { database } from '@/services/firebase'
+  import postWorkAppointment from '@/mixins/postWorkAppointment'
 
   export default {
+    mixins: [postWorkAppointment],
     methods: {
       getLabourers () {
         if (navigator.onLine) {
@@ -56,16 +59,18 @@
         if (this.worker) {
           this.labourersRef = database.ref(this.worker.comment).orderByChild('id').limitToLast(10)
         }
-        this.labourersRef.once('value', (snapshot) => {
-          let cachedLabourers = []
-          snapshot.forEach((labourerSnapshot) => {
-            let cachedLabourer = labourerSnapshot.val()
-            cachedLabourer['.key'] = labourerSnapshot.key
-            cachedLabourers.push(cachedLabourer)
+        if (!this.labourers) {
+          this.labourersRef.once('value', (snapshot) => {
+            let cachedLabourers = []
+            snapshot.forEach((labourerSnapshot) => {
+              let cachedLabourer = labourerSnapshot.val()
+              cachedLabourer['.key'] = labourerSnapshot.key
+              cachedLabourers.push(cachedLabourer)
+            })
+            this.labourers = cachedLabourers
+            localStorage.setItem(this.worker.comment + 'labourers', JSON.stringify(cachedLabourers))
           })
-          this.labourers = cachedLabourers
-          localStorage.setItem(this.worker.comment + 'labourers', JSON.stringify(cachedLabourers))
-        })
+        }
       }
     },
     data () {
