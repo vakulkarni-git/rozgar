@@ -33,6 +33,7 @@
       <div v-for="labourer in this.getLabourers()" class="image-card">
           <div class="image-card__comment mdl-card__actions">
             <input type="radio" @click.prevent="postWorkAppointment(labourer.id, labourer.id, labourer.name, from, to, labourer.skill)"><span>{{ labourer.name }}</span>
+          :☎️ <span>{{ labourer.phone_number }}</span>
           </div>
           <div class="image-card__comment mdl-card__actions">
             <span>{{labourer.skill }}</span>
@@ -186,6 +187,10 @@ label {
   cursor: pointer;
   font-size: 17px;
 }
+.image-card__comment mdl-card__actions:hover{
+  background-color: #45a049;
+}
+
 .image-card__comment mdl-card__actions:hover{
   background-color: #45a049;
 }
