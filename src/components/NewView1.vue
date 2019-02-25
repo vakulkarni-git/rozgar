@@ -41,7 +41,11 @@
       <span class="label">Log in</span>
       <span class="spinner"></span>
     </button>
-
+    <div class="actions">
+        <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/newview1">
+          ANSWER
+        </router-link>
+      </div>
     
     <a href="https://codepen.io/login#" id="forgot-password-link" class="forgot-password-link">
       Forgot Password?

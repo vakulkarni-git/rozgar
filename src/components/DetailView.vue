@@ -32,7 +32,7 @@
         <input v-model="to" type="date"> 
       <div v-for="labourer in this.getLabourers()" class="image-card">
           <div class="image-card__comment mdl-card__actions">
-            <input type="radio" @click.prevent="postWorkAppointment(labourer.id, labourer.id, labourer.name, from, to, labourer.skill)"><span>{{ labourer.name }}</span>
+            <input type="radio" @click.prevent="postWorkAppointment(labourer.id, labourer.id, labourer.name, from, to, labourer.skill)">👤<span>{{ labourer.name }}</span>
           :☎️ <span>{{ labourer.phone_number }}</span>
           </div>
           <div class="image-card__comment mdl-card__actions">
@@ -138,7 +138,7 @@
   padding: 0 16px;
 }
 
-.container {
+.image-card {
   background-color: #f2f2f2;
   padding: 5px 20px 15px 20px;
   border: 1px solid lightgrey;
