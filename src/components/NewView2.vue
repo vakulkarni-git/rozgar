@@ -48,7 +48,7 @@
         </div>
           
 		<input type="submit" value="Direct cash payment" class="btn"></p>
-        <input type="submit" value="Submit" class="btn">
+        <input type="submit" value="Submit" class="btn" @click="createPDF">
       
     </div>
   </div>
@@ -65,12 +65,21 @@
 <script>
   import parse from 'xml-parser'
   import postWorker from '@/mixins/postWorker'
+  import JSPDF from 'jspdf'
 
   export default {
     mixins: [postWorker],
     data () {
       return {
         'workerUrl': null
+      }
+    },
+    methods: {
+      createPDF () {
+        let pdfName = 'test'
+        var doc = new JSPDF()
+        doc.text('Hello World', 10, 10)
+        doc.save(pdfName + '.pdf')
       }
     },
     mounted () {
