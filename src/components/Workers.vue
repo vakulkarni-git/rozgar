@@ -23,10 +23,6 @@
        <datepicker v-model="state.fromdate" name="from" :disabledDates="disabledFromDates"></datepicker>
        <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-<div class="w3-panel w3-red">
-  <h3>Caution!</h3>
-  <p>Select appropriate Dates.</p>
-</div>
      </div>
        To: 
         <datepicker v-model="state.todate" name="to" :disabledDates="disabledToDates"></datepicker> 
@@ -61,6 +57,9 @@
     },
     mixins: [postWorkAppointment],
     methods: {
+      getRadioId (labourer) {
+        return 'radio' + labourer.id
+      },
       getLabourers () {
         if (navigator.onLine) {
           this.saveLabourersToCache()

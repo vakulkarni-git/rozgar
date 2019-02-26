@@ -42,7 +42,7 @@
       <span class="spinner"></span>
     </button>
     <div class="actions">
-        <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/newview1">
+        <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/">
           ANSWER
         </router-link>
       </div>

@@ -20,7 +20,7 @@
   export default {
     methods: {
       displayDetails (id) {
-        this.$router.push({name: 'detail', params: { id: id }})
+        this.$router.push({name: 'workers', params: { id: id }})
       },
       getWorkers () {
         if (navigator.onLine) {

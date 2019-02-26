@@ -1,12 +1,11 @@
 import Vue from 'vue'
 import Router from 'vue-router'
-import HomeView from '@/components/HomeView'
-import DetailView from '@/components/DetailView'
-import PostView from '@/components/PostView'
-import CameraView from '@/components/CameraView'
-import NewView1 from '@/components/NewView1'
-import NewView2 from '@/components/NewView2'
-import NewView3 from '@/components/NewView3'
+import SME from '@/components/SME'
+import Workers from '@/components/Workers'
+import AboutUs from '@/components/AboutUs'
+import Login from '@/components/Login'
+import Payment from '@/components/Payment'
+import Registration from '@/components/Registration'
 import WorkAppointments from '@/components/WorkAppointments'
 
 Vue.use(Router)
@@ -14,44 +13,39 @@ Vue.use(Router)
 export default new Router({
   routes: [
     {
-      path: '/newview1',
-      name: 'home',
-      component: HomeView
+      path: '/registration',
+      name: 'registration',
+      component: Registration
     },
     {
-      path: '/detail/:id',
-      name: 'detail',
-      component: DetailView
-    },
-    {
-      path: '/post',
-      name: 'post',
-      component: PostView
-    },
-    {
-      path: '/camera',
-      name: 'camera',
-      component: CameraView
+      path: '/login',
+      name: 'login',
+      component: Login
     },
     {
       path: '/',
-      name: 'newview1',
-      component: NewView1
+      name: 'sme',
+      component: SME
     },
     {
-      path: '/newview2',
-      name: 'newview2',
-      component: NewView2
+      path: '/workers/:id',
+      name: 'workers',
+      component: Workers
     },
     {
-      path: '/newview3',
-      name: 'newview3',
-      component: NewView3
+      path: '/payment',
+      name: 'payment',
+      component: Payment
     },
     {
       path: '/workAppointments',
       name: 'workAppointments',
       component: WorkAppointments
+    },
+    {
+      path: '/aboutus',
+      name: 'aboutus',
+      component: AboutUs
     }
   ]
 })
