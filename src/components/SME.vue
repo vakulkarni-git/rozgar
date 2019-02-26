@@ -20,9 +20,10 @@
   export default {
     methods: {
       displayDetails (id) {
-        this.$router.push({name: 'workers', params: { id: id }})
+        this.$router.replace({name: 'workers', params: { id: id }})
       },
       getWorkers () {
+        /*
         if (navigator.onLine) {
           this.saveWorkersToCache()
           console.log('HomeView', JSON.stringify(this.$root.worker))
@@ -30,6 +31,13 @@
         } else {
           console.log('HomeView', localStorage.getItem('workers'))
           return JSON.parse(localStorage.getItem('workers'))
+        } */
+        if (localStorage.getItem('workers')) {
+          console.log('HomeView', localStorage.getItem('workers'))
+          return JSON.parse(localStorage.getItem('workers'))
+        } else {
+          this.saveWorkersToCache()
+          return this.$root.worker
         }
       },
       saveWorkersToCache () {
@@ -44,7 +52,14 @@
         })
       }
     },
+    data () {
+      return {
+        oldSME: null,
+        SME: 'sme'
+      }
+    },
     mounted () {
+      this.SME = new Date().now
       this.saveWorkersToCache()
     }
   }

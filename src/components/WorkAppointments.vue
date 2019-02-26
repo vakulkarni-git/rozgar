@@ -3,15 +3,15 @@
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="workAppointment in this.getWorkAppointments()" class="image-card" @click="displayDetails(picture['.key'])">
+        <div v-for="appointment in this.getWorkAppointments()" class="image-card" @click="displayDetails(picture['.key'])">
           <div class="image-card__picture">
-            <span>{{ workAppointment.id }}</span><br/>
-            <span>{{ workAppointment.from }}</span><br/>
-            <span>{{ workAppointment.to }}</span><br/>
-            <span>{{ workAppointment.work_description }}</span><br/>
+            <span>{{ appointment.id }}</span><br/>
+            <span>{{ appointment.from }}</span><br/>
+            <span>{{ appointment.to }}</span><br/>
+            <span>{{ appointment.work_description }}</span><br/>
           </div>
           <div class="image-card__comment mdl-card__actions">
-            <span>{{ workAppointment.name }}</span>
+            <span>{{ appointment.name }}</span>
           </div>
         </div>
       </div>
@@ -26,6 +26,7 @@
         // this.$router.push({name: 'detail', params: { id: id }})
       },
       getWorkAppointments () {
+        /*
         if (navigator.onLine) {
           this.saveWorkAppointmentsToCache()
           console.log('WorkAppointments', JSON.stringify(this.$root.workAppointment))
@@ -33,6 +34,14 @@
         } else {
           console.log('WorkAppointments', localStorage.getItem('workAppointments'))
           return JSON.parse(localStorage.getItem('workAppointments'))
+        }
+        */
+        if (localStorage.getItem('workAppointments')) {
+          console.log('WorkAppointments', localStorage.getItem('workAppointments'))
+          return JSON.parse(localStorage.getItem('workAppointments'))
+        } else {
+          this.saveWorkAppointmentsToCache()
+          return this.$root.workAppointment
         }
       },
       saveWorkAppointmentsToCache () {
