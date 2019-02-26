@@ -179,37 +179,6 @@ label {
   font-size: 24px;
 }
 
-.mdl-selectfield__select:hover{
-  background-color: rgb(29, 170, 226);
-  color: white;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  width: 100%;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
-}
-
-.image-card__comment mdl-card__actions:hover{
-  background-color: rgb(29, 170, 226);
-  color: white;
-  padding: 12px;
-  margin: 10px 0;
-  border: none;
-  width: 100%;
-  border-radius: 3px;
-  cursor: pointer;
-  font-size: 17px;
-}
-.image-card__comment mdl-card__actions:hover{
-  background-color: #45a049;
-}
-
-.image-card__comment mdl-card__actions:hover{
-  background-color: #45a049;
-}
-
 a {
   color: #2196F3;
 }

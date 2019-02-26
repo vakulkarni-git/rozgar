@@ -4,15 +4,16 @@
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
         <div v-for="workAppointment in this.getWorkAppointments()" class="image-card" @click="displayDetails(picture['.key'])">
-          <div class="image-card__picture">
-            <span>{{ workAppointment.id }}</span><br/>
-            <span>{{ workAppointment.from }}</span><br/>
-            <span>{{ workAppointment.to }}</span><br/>
-            <span>{{ workAppointment.work_description }}</span><br/>
-          </div>
           <div class="image-card__comment mdl-card__actions">
-            <span>{{ workAppointment.name }}</span>
+            <span>⮚{{ workAppointment.name }}</span>
           </div>
+          <div class="image-card__picture">
+            <span>Worker Id🡲{{ workAppointment.id }}</span><br/>
+            <span>Wroking From🡲{{ workAppointment.from }}</span><br/>
+            <span>Working TO🡲{{ workAppointment.to }}</span><br/>
+            <span>Worker Skill🡲{{ workAppointment.work_description }}</span><br/>
+          </div>
+          
         </div>
       </div>
     </div>
@@ -53,36 +54,126 @@
   }
 </script>
 <style scoped>
-  .add-picture-button {
-    position: fixed;
-    right: 24px;
-    bottom: 24px;
-    z-index: 998;
+  .waiting {
+    padding: 10px;
+    color: #555;
   }
-  .take-picture-button {
-    position: fixed;
-    right: 24px;
-    bottom: 90px;
-    z-index: 5;
+  body {
+  font-family: Arial;
+  font-size: 17px;
+  padding: 8px;
+}
+
+* {
+  box-sizing: border-box;
+}
+
+.row {
+  display: -ms-flexbox; /* IE10 */
+  display: flex;
+  -ms-flex-wrap: wrap; /* IE10 */
+  flex-wrap: wrap;
+  margin: 0 -16px;
+}
+
+.col-25 {
+  -ms-flex: 25%; /* IE10 */
+  flex: 25%;
+}
+
+.col-50 {
+  -ms-flex: 50%; /* IE10 */
+  flex: 50%;
+}
+
+.col-75 {
+  -ms-flex: 75%; /* IE10 */
+  flex: 75%;
+}
+
+.col-25,
+.col-50,
+.col-75 {
+  padding: 0 16px;
+}
+
+.image-card {
+  background-color: #f2f2f2;
+  padding: 5px 20px 15px 20px;
+  border: 1px solid lightgrey;
+  border-radius: 3px;
+}
+
+input[type=date] {
+  width: 100%;
+  margin-bottom: 20px;
+  padding: 12px;
+  border: 1px solid #ccc;
+  border-radius: 3px;
+}
+
+label {
+  margin-bottom: 10px;
+  display: block;
+}
+
+.icon-container {
+  margin-bottom: 20px;
+  padding: 7px 0;
+  font-size: 24px;
+}
+
+.mdl-selectfield__select:hover{
+  background-color: rgb(29, 170, 226);
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+
+.image-card__comment mdl-card__actions:hover{
+  background-color: rgb(29, 170, 226);
+  color: white;
+  padding: 12px;
+  margin: 10px 0;
+  border: none;
+  width: 100%;
+  border-radius: 3px;
+  cursor: pointer;
+  font-size: 17px;
+}
+.image-card__comment mdl-card__actions:hover{
+  background-color: #45a049;
+}
+
+.image-card__comment mdl-card__actions:hover{
+  background-color: #45a049;
+}
+
+a {
+  color: #2196F3;
+}
+
+hr {
+  border: 1px solid lightgrey;
+}
+
+span.price {
+  float: right;
+  color: grey;
+}
+
+/* Responsive layout - when the screen is less than 800px wide, make the two columns stack on top of each other instead of next to each other (also change the direction - make the "cart" column go on top) */
+@media (max-width: 800px) {
+  .row {
+    flex-direction: column-reverse;
   }
-  .image-card {
-    position: relative;
-    margin-bottom: 8px;
+  .col-25 {
+    margin-bottom: 20px;
   }
-  .image-card__picture > img {
-    width:100%;
-  }
-  .image-card__comment {
-    position: absolute;
-    bottom: 0;
-    height: 52px;
-    padding: 16px;
-    text-align: right;
-    background: rgba(0, 0, 0, 0.5);
-  }
-  .image-card__comment > span {
-    color: #fff;
-    font-size: 14px;
-    font-weight: bold;
-  }
+}
 </style>
