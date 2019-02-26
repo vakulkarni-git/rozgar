@@ -8,12 +8,10 @@
       </div>
       <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-          <input id="username" v-model="title" type="text" class="mdl-textfield__input"/>
-          <label for="username" class="mdl-textfield__label">Describe me</label>
+          <label for="username" class="mdl-textfield__label">About us</label>
         </div>
         <div class="actions">
-          <a @click.prevent="postWorker(workerUrl, title)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            POST A PICTURE
+            Plan Scheme has been designed to incentivise employers for generation of new employment, where Government of India will be paying the full employer's contribution toward EPS w.e.f 01.04.2018 (earlier benefit was applicable for employer's contribution towards EPS only) for the new employment. This scheme has a dual benefit, where, on the one hand, the employer is incentivised for increasing the employment base of workers in the establishment, and on the other hand, a large number of workers will find jobs in such establishments. A direct benefit is that these workers will have access to social security benefits of the organized sector.
           </a>
         </div>
       </div>
