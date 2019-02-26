@@ -92,7 +92,7 @@
 <style scoped>
   .waiting {
     padding: 10px;
-    color: #555;
+    color:  lightgrey;
   }
   body {
   font-family: Arial;

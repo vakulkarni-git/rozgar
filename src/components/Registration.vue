@@ -1,59 +1,57 @@
 <template>
-  <form>
-  <h1>Register with ROJGAR</h1>
-<p1><h2>WHERE POTENTIAL MEETS THE NEED</h2></p1>
+  <form class="container">
+  <h3>Register with ROJGAR</h3>
+WHERE POTENTIAL MEETS THE NEED
 
+<div><br></div>
 
-
-<form action="http://www.mdldiamonds.com/register.asp" method="post">
+<form class="container" action="http://www.mdldiamonds.com/register.asp" method="post">
   <input name="required" type="hidden" value="company,contactname,email,telephone,streetaddress,city,country,username,password,question1,question2,question3,question4">
   <input name="return" type="hidden" value="1">
   <table>
     <tbody>
     <tr>
-      <td><p><h2>Name:</h2></p></td>
-      <td><input name="contactname" type="text" value=""> <span class="required">*</span></td>
+      <td><p>Name:</p></td>
+      <td><input name="contactname" type="text" value=""></td>
     </tr>
     <tr>
-      <td><p><h2> Email:</h2></p></td>
-      <td><input name="email" type="text" value=""> <span class="required">*</span></td>
+      <td><p>Email:</p></td>
+      <td><input name="email" type="text" value=""></td>
     </tr>
     <tr>
-      <td><p><h2>Telephone:</h2></p></td>
-      <td><input name="telephone" type="text" value=""> <span class="required">*</span></td>
+      <td><p>Telephone:</p></td>
+      <td><input name="telephone" type="text" value=""></td>
     </tr>
    
    
     <tr>
-      <td><p><h2>Province or State:</h2></p></td>
+      <td><p>Province or State:</p></td>
       <td><input name="province" type="text" value=""></td>
     </tr>
     <tr>
-      <td><p><h2>Postal or Zip Code:</h2></p></td>
+      <td><p>Postal or Zip Code:</p></td>
       <td><input name="postalcode" type="text" value=""></td>
     </tr>
     <tr>
-      <td><p><h2>Country:</h2></p></td>
-      <td><input name="country" type="text" value=""> <span class="required">*</span></td>
+      <td><p>Country:</p></td>
+      <td><input name="country" type="text" value=""></td>
     </tr>
     <tr>
-      <td><p><h2>Choose a Login Name:</h2></p></td>
-      <td><input name="username" type="text" value=""> <span class="required">*</span><br>
-        <span class="tabletext">(5 - 8 characters, letters and numbers only)</span></td>
+      <td><p>Choose a Login Name:</p></td>
+      <td><input name="username" type="text" value=""></td><br>
     </tr>
     <tr>
-      <td><p><h2>Choose a Password:</h2></p></td>
-      <td><input name="password" type="password" value=""> <span class="required">*</span><br>
-        <span class="tabletext">(5 - 8 characters, letters and numbers only)</span></td>
+      <td><p>Choose a Password:</p></td>
+      <td><input name="password" type="text" value=""></td><br>
     </tr>
     
     
    
     <tr>
-      <td><p><h2>Date Of Birth:</h2></p></td>
-      <td><input name="question3" type="text" value=""> <span class="required">*</span><br></td>
-   
-      <td colspan="2"><p align="center"><input type="hidden" name="ai" value=""><input type="submit" value="Submit"> <input type="reset" value="Clear"></p></td>
+      <td><p>Date Of Birth:</p></td>
+      <td><input name="question3" type="text" value=""><br></td>
+      <br>
+      <td colspan="2"><p align="center"><br><input type="hidden" name="ai" value=""><br><input type="submit" value="Submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"><br><br><input type="reset" value="Clear" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"></p></td>
     </tr>
   </tbody></table>
 </form>
@@ -69,13 +67,8 @@
       </div>
       <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
-          <input id="username" v-model="title" type="text" class="mdl-textfield__input"/>
-          <label for="username" class="mdl-textfield__label">Describe me</label>
         </div>
         <div class="actions">
-          <a @click.prevent="postWorker(workerUrl, title)" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
-            POST A PICTURE NEW VIEW 3
-          </a>
         </div>
       </div>
     </div>
@@ -170,7 +163,7 @@ label {
 }
 
 .btn {
-  background-color: #4CAF50;
+  background-color: #f2f2f2;
   color: white;
   padding: 12px;
   margin: 10px 0;
