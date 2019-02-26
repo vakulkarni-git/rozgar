@@ -13,6 +13,7 @@
         <router-link class="mdl-navigation__link" to="/newview1" @click.native="hideMenu">NewView1</router-link>
         <router-link class="mdl-navigation__link" to="/newview2" @click.native="hideMenu">NewView2</router-link>
         <router-link class="mdl-navigation__link" to="/newview3" @click.native="hideMenu">NewView3</router-link>
+        <router-link class="mdl-navigation__link" to="/workAppointments" @click.native="hideMenu">Work Appointments</router-link>
       </nav>
     </div>
     <main class="mdl-layout__content">

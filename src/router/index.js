@@ -7,6 +7,7 @@ import CameraView from '@/components/CameraView'
 import NewView1 from '@/components/NewView1'
 import NewView2 from '@/components/NewView2'
 import NewView3 from '@/components/NewView3'
+import WorkAppointments from '@/components/WorkAppointments'
 
 Vue.use(Router)
 
@@ -46,6 +47,11 @@ export default new Router({
       path: '/newview3',
       name: 'newview3',
       component: NewView3
+    },
+    {
+      path: '/workAppointments',
+      name: 'workAppointments',
+      component: WorkAppointments
     }
   ]
 })
