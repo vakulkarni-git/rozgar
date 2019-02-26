@@ -27,6 +27,7 @@
         // this.$router.push({name: 'detail', params: { id: id }})
       },
       getWorkAppointments () {
+        /*
         if (navigator.onLine) {
           this.saveWorkAppointmentsToCache()
           console.log('WorkAppointments', JSON.stringify(this.$root.workAppointment))
@@ -34,6 +35,14 @@
         } else {
           console.log('WorkAppointments', localStorage.getItem('workAppointments'))
           return JSON.parse(localStorage.getItem('workAppointments'))
+        }
+        */
+        if (localStorage.getItem('workAppointments')) {
+          console.log('WorkAppointments', localStorage.getItem('workAppointments'))
+          return JSON.parse(localStorage.getItem('workAppointments'))
+        } else {
+          this.saveWorkAppointmentsToCache()
+          return this.$root.workAppointment
         }
       },
       saveWorkAppointmentsToCache () {

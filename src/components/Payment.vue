@@ -46,10 +46,12 @@
           </div>
 
         </div>
-          
-		<input type="submit" value="Direct cash payment" class="btn"></p>
+       <div class="btn" align="center">
+		<router-link input type="submit" to="/DrawingSheet" value="Direct cash payment" class="btn"></p>
+    Direct cash payment</router-link>
+    </div>
         <input type="submit" value="Submit" class="btn" @click="createPDF">
-      
+    
     </div>
   </div>
     <div class="mdl-grid">
@@ -163,7 +165,7 @@ label {
   background-color: #4CAF50;
   color: white;
   padding: 12px;
-  margin: 10px 0;
+  margin: 10px ;
   border: none;
   width: 100%;
   border-radius: 3px;

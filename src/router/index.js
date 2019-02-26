@@ -7,6 +7,7 @@ import Login from '@/components/Login'
 import Payment from '@/components/Payment'
 import Registration from '@/components/Registration'
 import WorkAppointments from '@/components/WorkAppointments'
+import DrawingSheet from '@/components/DrawingSheet'
 
 Vue.use(Router)
 
@@ -41,6 +42,11 @@ export default new Router({
       path: '/workAppointments',
       name: 'workAppointments',
       component: WorkAppointments
+    },
+    {
+      path: '/DrawingSheet',
+      name: 'DrawingSheet',
+      component: DrawingSheet
     },
     {
       path: '/aboutus',

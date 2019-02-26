@@ -35,6 +35,9 @@
             <span>{{labourer.skill }}</span>
           </div>
       </div>
+      <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/payment">
+          Submit
+      </router-link>
     </div>
   </div>
   </form>
@@ -61,6 +64,7 @@
         return 'radio' + labourer.id
       },
       getLabourers () {
+        /*
         if (navigator.onLine) {
           this.saveLabourersToCache()
           console.log('DetailView', JSON.stringify(this.labourers))
@@ -69,12 +73,23 @@
           console.log('DetailView', localStorage.getItem(this.worker.comment + 'labourers'))
           return JSON.parse(localStorage.getItem(this.worker.comment + 'labourers'))
         }
+        */
+        if (localStorage.getItem(this.worker.comment + 'labourers')) {
+          console.log('DetailView', localStorage.getItem(this.worker.comment + 'labourers'))
+          return JSON.parse(localStorage.getItem(this.worker.comment + 'labourers'))
+        } else {
+          this.saveLabourersToCache()
+          console.log('DetailView', JSON.stringify(this.labourers))
+          return this.labourers
+        }
       },
       saveLabourersToCache () {
+        console.log('saveLabourersToCache', this.worker, this.worker.comment)
         if (this.worker) {
           this.labourersRef = database.ref(this.worker.comment).orderByChild('id').limitToLast(10)
         }
-        if (!this.labourers) {
+        if (this.worker !== this.oldWorker && !this.labourers && this.labourersRef) {
+          this.oldWorker = this.worker
           this.labourersRef.once('value', (snapshot) => {
             let cachedLabourers = []
             snapshot.forEach((labourerSnapshot) => {
@@ -90,6 +105,7 @@
     },
     data () {
       return {
+        oldWorker: null,
         worker: null,
         labourersRef: null,
         labourers: null,

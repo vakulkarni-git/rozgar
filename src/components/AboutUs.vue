@@ -6,7 +6,7 @@
           <img :src="this.workerUrl"/>
         </div>
       </div>
-      <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
+      <div class="mdl-cell--4-col-tablet mdl-cell--8-col-tablet">
         <div class="mdl-textfield mdl-js-textfield mdl-textfield--floating-label is-upgraded is-dirty">
           <label for="username" class="mdl-textfield__label">About us</label>
         </div>
