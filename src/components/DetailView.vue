@@ -20,7 +20,7 @@
     </form>
     <div>
         From: 
-       <input v-model="from" type="date">
+       <datepicker v-model="state.fromdate" name="from" :disabledDates="disabledFromDates"></datepicker>
        <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
 <div class="w3-panel w3-red">
@@ -29,7 +29,7 @@
 </div>
      </div>
        To: 
-        <input v-model="to" type="date"> 
+        <datepicker v-model="state.todate" name="to" :disabledDates="disabledToDates"></datepicker> 
       <div v-for="labourer in this.getLabourers()" class="image-card">
           <div class="image-card__comment mdl-card__actions">
             <input type="radio" @click.prevent="postWorkAppointment(labourer.id, labourer.id, labourer.name, from, to, labourer.skill)">👤<span>{{ labourer.name }}</span>
@@ -45,11 +45,20 @@
 </template>
 <script>
   
+  import Datepicker from 'vuejs-datepicker'
   import { find } from 'lodash'
   import { database } from '@/services/firebase'
   import postWorkAppointment from '@/mixins/postWorkAppointment'
 
+  var state = {
+    fromdate: new Date(),
+    todate: new Date()
+  }
+
   export default {
+    components: {
+      Datepicker
+    },
     mixins: [postWorkAppointment],
     methods: {
       getLabourers () {
@@ -84,7 +93,14 @@
       return {
         worker: null,
         labourersRef: null,
-        labourers: null
+        labourers: null,
+        state: state,
+        disabledFromDates: {
+          to: new Date()
+        },
+        disabledToDates: {
+          to: state.fromdate
+        }
       }
     },
     mounted () {
