@@ -20,27 +20,25 @@
     </form>
     <div>
         From: 
-       <datepicker v-model="state.fromdate" name="from" :disabledDates="disabledFromDates"></datepicker>
+       <datepicker v-model="from" name="fromdate" :disabledDates="disabledFromDates"></datepicker>
        <meta name="viewport" content="width=device-width, initial-scale=1">
 <link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
      </div>
        To: 
-        <datepicker v-model="state.todate" name="to" :disabledDates="disabledToDates"></datepicker> 
+        <datepicker v-model="to" name="todate" :disabledDates="disabledToDates"></datepicker> 
         <div>
           <br>
         </div>
       <div v-for="labourer in this.getLabourers()" class="image-card">
           <div class="image-card__comment mdl-card__actions">
-            <input type="radio" @click.prevent="postWorkAppointment(labourer.id, labourer.id, labourer.name, from, to, labourer.skill)">👤<span>{{ labourer.name }}</span>
+            <input type="radio" ref="labourerEntry" :id="labourer.id">👤<span>{{ labourer.name }}</span>
           :☎️ <span>{{ labourer.phone_number }}</span>
           </div>
           <div class="image-card__comment mdl-card__actions">
             <span>{{labourer.skill }}</span>
           </div>
       </div>
-      <router-link class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored" to="/payment">
-          Submit
-      </router-link>
+      <input type="submit" @click.prevent="getChosenWorker(from, to)">
     </div>
   </div>
   </form>
@@ -63,6 +61,29 @@
     },
     mixins: [postWorkAppointment],
     methods: {
+      getChosenWorker (from, to) {
+        // var labourers = this.getLabourers()
+        var chosenLabourer = ''
+        console.log('getChosenWorker', this.$refs.labourerEntry)
+        var labourerEntries = this.$refs.labourerEntry
+        for (var i = 0; i < labourerEntries.length; i++) {
+          console.log('getChosenWorker', JSON.stringify(labourerEntries[i]))
+          if (labourerEntries[i].checked) {
+            chosenLabourer = labourerEntries[i].id
+          }
+        }
+        var labourers = this.getLabourers()
+        for (i = 0; i < labourers.length; i++) {
+          if (labourers[i].id === parseInt(chosenLabourer)) {
+            chosenLabourer = labourers[i]
+            break
+          }
+        }
+
+        console.log('getChosenWorker', chosenLabourer, from, to)
+        this.postWorkAppointment('100', chosenLabourer.id, chosenLabourer.name, from, to, chosenLabourer.skill)
+        this.$router.replace({name: 'payment'})
+      },
       getRadioId (labourer) {
         return 'radio' + labourer.id
       },
@@ -110,6 +131,7 @@
       return {
         oldWorker: null,
         worker: null,
+        labourerEntry: [],
         labourersRef: null,
         labourers: null,
         state: state,
@@ -198,8 +220,6 @@ label {
   font-size: 24px;
 }
 
-<<<<<<< HEAD
-=======
 .image-card__comment mdl-card__actions:hover{
   background-color: #45a049;
 }
@@ -208,7 +228,6 @@ label {
   background-color: #45a049;
 }
 
->>>>>>> 62006cf7e8b31c1ab86d3210028268fa33c6aeed
 a {
   color: #2196F3;
 }
