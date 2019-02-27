@@ -42,9 +42,20 @@
                 <label for="IFSC">IFSC Code</label>
                 <input type="text" id="IFSC" name="" placeholder="KARB00006">
               </div>
+              <div class="col-50">
+                <label for="IFSC">Amount</label>
+                <input type="text" id="IFSC" name="" placeholder="KARB00006">
+              </div>
             </div>
           </div>
-
+  <input type="radio" v-model="color" value="0">Agree with terms and conditions
+  <div align="center" class="actions">
+        <router-link id="log-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored spinner" to="/aboutus">
+          Read terms and conditions
+        </router-link>
+      </div>
+    
+  <br>
         </div>
        <div class="btn" align="center">
 		<router-link input type="submit" to="/DrawingSheet" value="Direct cash payment" class="btn"></p>
