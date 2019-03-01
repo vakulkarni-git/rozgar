@@ -10,6 +10,7 @@ import WorkAppointments from '@/components/WorkAppointments'
 import DrawingSheet from '@/components/DrawingSheet'
 import Confirmation from '@/components/Confirmation'
 import Timeline from '@/components/Timeline'
+import WorkersNew from '@/components/WorkersNew'
 
 Vue.use(Router)
 
@@ -34,6 +35,11 @@ export default new Router({
       path: '/workers/:id',
       name: 'workers',
       component: Workers
+    },
+    {
+      path: '/workers_new/:id',
+      name: 'workers_new',
+      component: WorkersNew
     },
     {
       path: '/confirmation/:id',

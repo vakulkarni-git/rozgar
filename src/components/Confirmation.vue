@@ -60,7 +60,7 @@
           'variables': '{#AA#}',
           'variables_values': this.otp
         }
-        api.request('post', 'http://localhost:3000/accounts', body)
+        api.request('post', 'http://sms-rozgar.ap-south-1.elasticbeanstalk.com:3000/accounts', body)
           .then((response) => {
             console.log('sendOTP', response)
           })
