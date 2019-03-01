@@ -1,47 +1,66 @@
 <template>
-  <form>
-  <div class="mdl-grid">
-    <div class="mdl-cell mdl-cell--4-col mdl-cell--8-col-tablet">
-    <form>
-      <div>
-      <h5>Select work basis</h5>
+  <!-- Main content -->
+  <section class="content">
+    <div class="row">
+
+      <!-- Info boxes -->
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <info-box color-class="bg-aqua"
+                  :icon-classes="['ion', 'ion-ios-gear-outline']"
+                  text="Employed"
+                  number="90%"></info-box>
       </div>
-      <div class="mdl-selectfield mdl-js-selectfield">
-        <p>
-        <select class="mdl-selectfield__select" id="professsion1" name="professsion">
-          <option value="">Select one</option>
-          <option value="1">Time specific work</option>
-          <option value="2">Task/Job specific work</option>
-        </select> 
-        
-        <label class="mdl-selectfield__label" for="professsion1">Profession</label>
-        </p> 
+      <!-- /.col -->
+      <div class="col-md-3 col-sm-6 col-xs-12">
+        <info-box color-class="bg-red"
+                  :icon-classes="['ion', 'ion-clipboard']"
+                  text="Total Work Orders"
+                  number="41,410"></info-box>
       </div>
-    </form>
-    <div>
-        From: 
-       <datepicker v-model="from" name="fromdate" :disabledDates="disabledFromDates"></datepicker>
-       <meta name="viewport" content="width=device-width, initial-scale=1">
-<link rel="stylesheet" href="https://www.w3schools.com/w3css/4/w3.css">
-     </div>
-       To: 
-        <datepicker v-model="to" name="todate" :disabledDates="disabledToDates"></datepicker> 
-        <div>
-          <br>
-        </div>
-      <div v-for="labourer in this.getLabourers()" class="image-card" @click="displayDetails(labourer['.key'], from, to, labourer)">
-          <div class="image-card__comment mdl-card__actions">
-            <input type="text" ref="labourerEntry" :id="labourer.id">👤<span>{{ labourer.name }}</span>
-          :☎️ <span>{{ labourer.phone_number }}</span>
-          </div>
-          <div class="image-card__comment mdl-card__actions">
-            <span>{{labourer.skill }}</span>
-          </div>
-      </div>
-      <input type="submit" @click.prevent="getChosenWorker(from, to)">
+      <!-- /.col -->
+      <!-- /.col -->
     </div>
-  </div>
-  </form>
+    <!-- /.row -->
+
+    <div class="col-xs-12">
+      <div class="input-group mb-3">
+      <div class="input-group-prepend">
+        <label class="input-group-text" for="inputGroupSelect01">Work Type</label>
+      </div>
+      <select class="custom-select" id="inputGroupSelect01">
+        <option selected>Choose...</option>
+        <option value="1">Work Quantum Basis</option>
+        <option value="2">Fixed Time Basis</option>
+      </select>
+      </div>
+    </div>
+
+    <div class="input-group mb-3">
+     <div class="input-group-prepend">
+       <span class="input-group-text" id="basic-addon1">Start Date</span>
+     </div>
+     <datepicker style="line-height:2;" v-model="from" name="fromdate" :disabledDates="disabledFromDates" placeholder="Pick a start date"></datepicker>
+    </div>
+
+    <div class="input-group mb-3">
+     <div class="input-group-prepend">
+       <span class="input-group-text" id="basic-addon1">End Date</span>
+     </div>
+     <datepicker style="line-height:2;" v-model="to" name="todate" :disabledDates="disabledFromDates" placeholder="Pick an end date"></datepicker>
+    </div>
+
+    <div v-for="labourer in this.getLabourers()" @click="displayDetails(labourer['.key'], from, to, labourer)">
+            <process-info-box color-class="bg-aqua"
+                          :icon-classes="['ion', 'ion-ios-person']"
+                          :text=labourer.name
+                          :number=labourer.phone_number
+                          :progress=labourer.id/(Math.random()*10+1)
+                          description="Progress seen in the last 30 days"> </process-info-box>
+    </div>
+
+
+  </section>
+  <!-- /.content -->
 </template>
 
 <script>

@@ -1,19 +1,36 @@
 <template>
-  <div class="confirmation-modal" style="margin-left:20px;">
-    <div>
-        <p>{{ labourer.id }}</p>
-        <p>{{ labourer.name }}</p>
-        <p>{{ labourer.phone_number }}</p>
-        <p>{{ labourer.skill }}</p>
-        <button @click.prevent="sendOTP()">Send OTP</button>
-        <p></p>
+<div>
+<div class="card text-center">
+  <div class="card-header">
+    {{ this.labourer.name }}
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Please confirm the work appointment</h5>
+    <p class="card-text">You will have to confirm with the OTP that is sent to {{ this.labourer.name }}</p>
+    <p class="card-text">Contact the individual at this number: {{ this.labourer.phone_number }}</p>
+    <p class="card-text">The following OTP will be valid for 5 minutes from requesting</p>
+    <a href="#" class="btn btn-primary" @click.prevent="sendOTP()">Send OTP</a>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
+<div class="card text-center">
+  <div class="card-header">
+    Confirm Appointment
+  </div>
+  <div class="card-body">
+    <h5 class="card-title">Please enter the OTP sent to {{ labourer.name }}</h5>
+    <div class="input-group" style="margin-top:20px;">
+      <div class="input-group-prepend">
+      <span class="input-group-text" id="basic-addon1">Enter OTP: </span>
     </div>
-    <form>
-        <p>Please enter the OTP sent to the worker below for confirmation:</p>
-        <input type="text" name="confirm" v-model="confirmOtp">
-        <p></p>
-        <input type="submit" name="submit" @click.prevent="confirmAppointment()">
-    </form>
+    <input type="text" placeholder="OTP" aria-label="Username" aria-describedby="basic-addon1" v-model="confirmOtp">
+    <a href="#" class="btn btn-primary" @click.prevent="confirmAppointment()">Confirm Appointment</a>
+  </div>
+  </div>
+  <div class="card-footer text-muted">
+  </div>
+</div>
   </div>
 </template>
 
