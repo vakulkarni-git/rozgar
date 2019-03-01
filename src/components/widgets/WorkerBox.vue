@@ -6,9 +6,8 @@
     <div class="info-box-content">
       <span class="info-box-text">{{text}}</span>
       <span class="info-box-number">{{number}}</span>
-      <span class="info-box-text">{{skill1}}</span>
       <div class="progress">
-        <div class="progress-bar bg-success" role="progressbar" :width=level1 :aria-valuenow=level1 aria-valuemin="0" aria-valuemax="100"></div>
+        <div class="progress-bar bg-info" role="progressbar" style="width: 50%" aria-valuenow="50" aria-valuemin="0" aria-valuemax="100">50%</div>
       </div>
     </div>
   </div>

@@ -67,38 +67,13 @@
     </div>
 
     <div v-for="labourer in this.getLabourers()" @click="displayDetails(labourer['.key'], from, to, labourer)">
-             <worker-box color-class="bg-aqua"
-                  :icon-classes="['ion', 'ion-ios-person']"
-                  :text=labourer.name
-                  :number=labourer.phone_number
-                  :skill1=labourer.skill.substring(2,18)
-                  :level1=labourer.id-50></worker-box>
+            <process-info-box color-class="bg-aqua"
+                          :icon-classes="['ion', 'ion-ios-person']"
+                          :text=labourer.name
+                          :number=labourer.phone_number
+                          :progress=labourer.id/(Math.random()*10+1)
+                          description="Progress seen in the last 30 days"> </process-info-box>
     </div>
-    </div>
-
-    <div class="col-xs-12">
-      <div class="box">
-        <div class="box-header with-border">
-          <h3 class="box-title"></h3>
-          <div class="box-body">
-            <div class="col-sm-6 col-xs-12">
-              <p class="text-center">
-                <strong>Web Traffic Overview</strong>
-              </p>
-              <canvas id="trafficBar" ></canvas>
-            </div>
-            <hr class="visible-xs-block">
-            <div class="col-sm-6 col-xs-12">
-              <p class="text-center">
-                <strong>Language Overview</strong>
-              </p>
-              <canvas id="languagePie"></canvas>
-            </div>
-          </div>
-        </div>
-      </div>
-    </div>
-    <!-- /.row -->
 
     <!-- Main row -->
     <div class="row">
@@ -152,7 +127,6 @@
   import postWorkAppointment from '@/mixins/postWorkAppointment'
   import Alert from './widgets/Alert'
   import InfoBox from './widgets/InfoBox'
-  import WorkerBox from './widgets/WorkerBox'
   import ProcessInfoBox from './widgets/ProcessInfoBox'
 
   var state = {
@@ -165,7 +139,6 @@
       Datepicker,
       Alert,
       InfoBox,
-      WorkerBox,
       ProcessInfoBox
     },
     mixins: [postWorkAppointment],
@@ -267,14 +240,6 @@
   cursor: pointer;
 }
 .info-box-content {
-  text-align: center;
-  vertical-align: middle;
-  display: inherit;
-}
-.worker-box {
-  cursor: pointer;
-}
-.worker-box-content {
   text-align: center;
   vertical-align: middle;
   display: inherit;
