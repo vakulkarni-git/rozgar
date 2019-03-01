@@ -3,17 +3,14 @@
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="workAppointment in this.getWorkAppointments()" class="image-card" @click="displayDetails(workAppointment)">
+        <div v-for="timeline in this.getTimeline()" class="image-card" @click="displayDetails(picture['.key'])">
           <div class="image-card__comment mdl-card__actions">
-            <span>⮚{{ workAppointment.name }}</span>
+            <span>Event</span>
           </div>
           <div class="image-card__picture">
-            <span>Worker Id🡲{{ workAppointment.id }}</span><br/>
-            <span>Wroking From🡲{{ workAppointment.from }}</span><br/>
-            <span>Working TO🡲{{ workAppointment.to }}</span><br/>
-            <span>Worker Skill🡲{{ workAppointment.work_description }}</span><br/>
+            <span>Time {{ timeline.time }}</span><br/>
+            <span>Message {{ timeline.message }}</span><br/>
           </div>
-          
         </div>
       </div>
     </div>
@@ -21,12 +18,13 @@
   
 </template>
 <script>
+  import { database } from '@/services/firebase'
   export default {
     methods: {
-      displayDetails (workAppointment) {
-        this.$router.push({name: 'timeline', params: {id: workAppointment.id}})
+      displayDetails (id) {
+        // this.$router.push({name: 'detail', params: { id: id }})
       },
-      getWorkAppointments () {
+      getTimeline () {
         /*
         if (navigator.onLine) {
           this.saveWorkAppointmentsToCache()
@@ -37,28 +35,35 @@
           return JSON.parse(localStorage.getItem('workAppointments'))
         }
         */
-        if (localStorage.getItem('workAppointments')) {
-          console.log('WorkAppointments', localStorage.getItem('workAppointments'))
-          return JSON.parse(localStorage.getItem('workAppointments'))
+        if (localStorage.getItem('timeline' + this.id)) {
+          console.log('Timeline', localStorage.getItem('timeline' + this.id))
+          return JSON.parse(localStorage.getItem('timeline' + this.id))
         } else {
-          this.saveWorkAppointmentsToCache()
-          return this.$root.workAppointment
+          this.saveTimelineToCache()
+          return this.$root.timeline
         }
       },
-      saveWorkAppointmentsToCache () {
-        this.$root.$firebaseRefs.workAppointment.orderByChild('created_at').once('value', (snapshot) => {
-          let cachedWorkAppointments = []
-          snapshot.forEach((workAppointmentSnapshot) => {
-            let cachedWorkAppointment = workAppointmentSnapshot.val()
-            cachedWorkAppointment['.key'] = workAppointmentSnapshot.key
-            cachedWorkAppointments.push(cachedWorkAppointment)
+      saveTimelineToCache () {
+        var ref = database.ref('Timeline').orderByChild('appointment').equalTo(this.id)
+        ref.once('value', (snapshot) => {
+          let cachedTimelines = []
+          snapshot.forEach((timelineSnapshot) => {
+            let cachedTimeline = timelineSnapshot.val()
+            cachedTimeline['.key'] = timelineSnapshot.key
+            cachedTimelines.push(cachedTimeline)
           })
-          localStorage.setItem('workAppointments', JSON.stringify(cachedWorkAppointments))
+          localStorage.setItem('timeline' + this.id, JSON.stringify(cachedTimelines))
         })
       }
     },
+    data () {
+      return {
+        id: null
+      }
+    },
     mounted () {
-      this.saveWorkAppointmentsToCache()
+      this.id = this.$route.params.id
+      this.saveTimelineToCache()
     }
   }
 </script>

@@ -8,6 +8,8 @@ import Payment from '@/components/Payment'
 import Registration from '@/components/Registration'
 import WorkAppointments from '@/components/WorkAppointments'
 import DrawingSheet from '@/components/DrawingSheet'
+import Confirmation from '@/components/Confirmation'
+import Timeline from '@/components/Timeline'
 
 Vue.use(Router)
 
@@ -34,6 +36,11 @@ export default new Router({
       component: Workers
     },
     {
+      path: '/confirmation/:id',
+      name: 'confirmation',
+      component: Confirmation
+    },
+    {
       path: '/payment',
       name: 'payment',
       component: Payment
@@ -42,6 +49,11 @@ export default new Router({
       path: '/workAppointments',
       name: 'workAppointments',
       component: WorkAppointments
+    },
+    {
+      path: '/timeline',
+      name: 'timeline',
+      component: Timeline
     },
     {
       path: '/DrawingSheet',

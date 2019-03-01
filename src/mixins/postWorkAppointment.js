@@ -12,8 +12,6 @@ const postWorkAppointment = {
           'work_description': workDescription,
           'created_at': -1 * new Date().getTime()
         }
-    ).then(
-      this.$router.push('/')
     )
     }
   }
