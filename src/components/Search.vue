@@ -69,12 +69,11 @@
           return JSON.parse(localStorage.getItem('workers'))
         } */
         console.log(this.oldskilltype, this.skilltype)
-        if (this.oldskilltype === this.skilltype && localStorage.getItem('skilltypeworkers')) {
+        if (localStorage.getItem('skilltypeworkers')) {
           console.log('HomeView', localStorage.getItem('skilltypeworkers'))
           return JSON.parse(localStorage.getItem('skilltypeworkers'))
         } else {
           this.saveWorkersToCache()
-          this.oldskilltype = this.skilltype
           return this.$root.worker
         }
       },
@@ -95,8 +94,7 @@
     data () {
       return {
         labourers: null,
-        skilltype: 'Template Writing',
-        oldskilltype: null
+        skilltype: 'Template Writing'
       }
     },
     mounted () {
