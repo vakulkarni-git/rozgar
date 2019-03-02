@@ -11,7 +11,10 @@
             <h3 class="timeline-header">{{ timeline.title }}</h3>
             <div class="timeline-body" v-if="timeline.message" v-html="timeline.message">
             </div>
-            <div class="timeline-footer" v-if="timeline.buttons">
+            <div class="timeline-footer" v-if="timeline.buttons" style="margin-top:10px;">
+              <star-rating  v-bind:star-size="20" v-model="rating"></star-rating>
+            </div>
+            <div class="timeline-footer" v-if="timeline.buttons" style="margin-top:10px;">
               <button id="payment-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored spinner" @click.prevent="gotoPayment()">
                  Go to Payment
               </button>
@@ -25,7 +28,11 @@
 </template>
 <script>
   import { database } from '@/services/firebase'
+  import StarRating from 'vue-star-rating'
   export default {
+    components: {
+      StarRating
+    },
     methods: {
       gotoPayment () {
         this.$router.push({name: 'payment', params: {workAppointment: this.workAppointment}})
@@ -65,7 +72,8 @@
     data () {
       return {
         id: null,
-        workAppointment: null
+        workAppointment: null,
+        rating: null
       }
     },
     mounted () {

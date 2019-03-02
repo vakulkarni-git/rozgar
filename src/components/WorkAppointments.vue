@@ -18,9 +18,11 @@
 </template>
 <script>
   import ProcessInfoBox from './widgets/ProcessInfoBox'
+  import StarRating from 'vue-star-rating'
   export default {
     components: {
-      ProcessInfoBox
+      ProcessInfoBox,
+      StarRating
     },
     methods: {
       displayDetails (workAppointment) {
