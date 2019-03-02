@@ -111,6 +111,8 @@
         doc.text('Where Potential Meets The Need', 10, 35)
         doc.text('Invoice No. :', 10, 55)
         doc.text(this.invoiceNumber, 45, 55)
+        doc.text('Udyog Aadhar :', 10, 65)
+        doc.text('6736839263529123', 50, 65)
         doc.text('Invoice Date:', 135, 55)
         doc.text(this.invoiceDate, 170, 55)
         doc.text('From:', 10, 75)
