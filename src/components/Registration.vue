@@ -1,11 +1,11 @@
 <template>
   <form class="container">
-  <h3>Register with ROJGAR</h3>
+  <h3>Register with ROZGAR as a MSME</h3>
 WHERE POTENTIAL MEETS THE NEED
 
 <div><br></div>
 
-<form class="container" action="http://www.mdldiamonds.com/register.asp" method="post">
+<form class="container">
   <input name="required" type="hidden" value="company,contactname,email,telephone,streetaddress,city,country,username,password,question1,question2,question3,question4">
   <input name="return" type="hidden" value="1">
   <table>
@@ -13,10 +13,6 @@ WHERE POTENTIAL MEETS THE NEED
     <tr>
       <td><p>Name:</p></td>
       <td><input name="contactname" type="text" value=""></td>
-    </tr>
-    <tr>
-      <td><p>Email:</p></td>
-      <td><input name="email" type="text" value=""></td>
     </tr>
     <tr>
       <td><p>Telephone:</p></td>
@@ -33,8 +29,19 @@ WHERE POTENTIAL MEETS THE NEED
       <td><input name="postalcode" type="text" value=""></td>
     </tr>
     <tr>
-      <td><p>Country:</p></td>
-      <td><input name="country" type="text" value=""></td>
+      <td><p>Udyog Aadhar Number:</p></td>
+      <td><input name="udyogaadhar" type="text" value=""></td>
+    </tr>
+    <tr>
+      <td><p>Industry Sector:</p></td>
+      <td><select class="custom-select" id="inputGroupSelect01">
+        <option selected>Choose...</option>
+        <option value="1">Advertising</option>
+        <option value="2">Ancillary</option>
+        <option value="3">Feeder</option>
+        <option value="4">Mining</option>
+        <option value="5">Textile</option>
+      </select></td>
     </tr>
     <tr>
       <td><p>Choose a Login Name:</p></td>
@@ -42,18 +49,18 @@ WHERE POTENTIAL MEETS THE NEED
     </tr>
     <tr>
       <td><p>Choose a Password:</p></td>
-      <td><input name="password" type="text" value=""></td><br>
+      <td><input name="password" type="password" value=""></td><br>
     </tr>
     
     
    
     <tr>
-      <td><p>Date Of Birth:</p></td>
+      <td><p>Year Of Registration:</p></td>
       <td><input name="question3" type="text" value=""><br></td>
       <br>
-      <td colspan="2"><p align="center"><br><input type="hidden" name="ai" value=""><br><input type="submit" value="Submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"><br><br><input type="reset" value="Clear" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored"></p></td>
     </tr>
   </tbody></table>
+  <input type="submit" value="Submit" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored">
 </form>
 
 

@@ -39,9 +39,7 @@
         <router-link id="log-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored spinner" to="/sme">
           Log in!
         </router-link>
-      </div>
-      
-    
+      </div>  
   </div>
 
 </form>

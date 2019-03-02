@@ -12,6 +12,9 @@ import Confirmation from '@/components/Confirmation'
 import Timeline from '@/components/Timeline'
 import WorkersNew from '@/components/WorkersNew'
 import Search from '@/components/Search'
+import WorkerAdvertisements from '@/components/WorkerAdvertisements'
+import BookWorker from '@/components/BookWorker'
+import LabourerRegistration from '@/components/LabourerRegistration'
 
 Vue.use(Router)
 
@@ -71,6 +74,21 @@ export default new Router({
       path: '/DrawingSheet',
       name: 'DrawingSheet',
       component: DrawingSheet
+    },
+    {
+      path: '/workerAdvertisements',
+      name: 'WorkerAdvertisements',
+      component: WorkerAdvertisements
+    },
+    {
+      path: '/book_worker',
+      name: 'BookWorker',
+      component: BookWorker
+    },
+    {
+      path: '/labourer_registration',
+      name: 'LabourerRegistration',
+      component: LabourerRegistration
     },
     {
       path: '/aboutus',

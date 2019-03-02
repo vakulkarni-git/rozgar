@@ -23,7 +23,8 @@ new Vue({
   firebase: {
     worker: database.ref('SME').orderByChild('created_at').limitToLast(10),
     workAppointment: database.ref('WorkAppointment').orderByChild('created_at'),
-    timeline: database.ref('Timeline').orderByChild('created_at')
+    timeline: database.ref('Timeline').orderByChild('created_at'),
+    workerAdvertisement: database.ref('labourer_self').orderByChild('id')
   },
   router,
   template: '<App/>',
