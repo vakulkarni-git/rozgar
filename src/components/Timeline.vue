@@ -4,12 +4,18 @@
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
         <div v-for="timeline in this.getTimeline()" class="image-card" @click="displayDetails(picture['.key'])">
-          <div class="image-card__comment mdl-card__actions">
-            <span>Event</span>
-          </div>
-          <div class="image-card__picture">
-            <span>Time {{ timeline.time }}</span><br/>
-            <span>Message {{ timeline.message }}</span><br/>
+          <!-- timeline icon -->
+          <i v-bind:class="'fa ' + timeline.icon + ' bg-' + timeline.color"></i>
+          <div class="timeline-item">
+            <span class="time"><i class="fa fa-clock-o"></i>&nbsp;{{ timeline.time }}</span>
+            <h3 class="timeline-header">{{ timeline.title }}</h3>
+            <div class="timeline-body" v-if="timeline.message" v-html="timeline.message">
+            </div>
+            <div class="timeline-footer" v-if="timeline.buttons">
+              <button id="payment-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored spinner" @click.prevent="gotoPayment()">
+                 Go to Payment
+              </button>
+            </div>
           </div>
         </div>
       </div>
@@ -21,8 +27,8 @@
   import { database } from '@/services/firebase'
   export default {
     methods: {
-      displayDetails (id) {
-        // this.$router.push({name: 'detail', params: { id: id }})
+      gotoPayment () {
+        this.$router.push({name: 'payment', params: {workAppointment: this.workAppointment}})
       },
       getTimeline () {
         /*
@@ -58,11 +64,13 @@
     },
     data () {
       return {
-        id: null
+        id: null,
+        workAppointment: null
       }
     },
     mounted () {
       this.id = this.$route.params.id
+      this.workAppointment = this.$route.params.workAppointment
       this.saveTimelineToCache()
     }
   }

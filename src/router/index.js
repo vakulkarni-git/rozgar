@@ -11,6 +11,7 @@ import DrawingSheet from '@/components/DrawingSheet'
 import Confirmation from '@/components/Confirmation'
 import Timeline from '@/components/Timeline'
 import WorkersNew from '@/components/WorkersNew'
+import Search from '@/components/Search'
 
 Vue.use(Router)
 
@@ -22,12 +23,12 @@ export default new Router({
       component: Registration
     },
     {
-      path: '/login',
+      path: '/',
       name: 'login',
       component: Login
     },
     {
-      path: '/',
+      path: '/sme',
       name: 'sme',
       component: SME
     },
@@ -60,6 +61,11 @@ export default new Router({
       path: '/timeline',
       name: 'timeline',
       component: Timeline
+    },
+    {
+      path: '/search',
+      name: 'search',
+      component: Search
     },
     {
       path: '/DrawingSheet',

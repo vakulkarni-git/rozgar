@@ -3,17 +3,13 @@
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="workAppointment in this.getWorkAppointments()" class="image-card" @click="displayDetails(workAppointment)">
-          <div class="image-card__comment mdl-card__actions">
-            <span>⮚{{ workAppointment.name }}</span>
-          </div>
-          <div class="image-card__picture">
-            <span>Worker Id🡲{{ workAppointment.id }}</span><br/>
-            <span>Wroking From🡲{{ workAppointment.from }}</span><br/>
-            <span>Working TO🡲{{ workAppointment.to }}</span><br/>
-            <span>Worker Skill🡲{{ workAppointment.work_description }}</span><br/>
-          </div>
-          
+        <div v-for="workAppointment in this.getWorkAppointments()" @click="displayDetails(workAppointment)">
+          <process-info-box color-class="bg-green"
+                          :icon-classes="['ion', 'ion-ios-gear-outline']"
+                          :text=workAppointment.name
+                          :number=workAppointment.id.toString()
+                          :progress=workAppointment.id/(Math.random()*10+1)
+                          description="Total time to work completion"> </process-info-box>
         </div>
       </div>
     </div>
@@ -21,10 +17,14 @@
   
 </template>
 <script>
+  import ProcessInfoBox from './widgets/ProcessInfoBox'
   export default {
+    components: {
+      ProcessInfoBox
+    },
     methods: {
       displayDetails (workAppointment) {
-        this.$router.push({name: 'timeline', params: {id: workAppointment.id}})
+        this.$router.push({name: 'timeline', params: {id: workAppointment.id, workAppointment: workAppointment}})
       },
       getWorkAppointments () {
         /*
@@ -63,6 +63,14 @@
   }
 </script>
 <style scoped>
+.info-box {
+  cursor: pointer;
+}
+.info-box-content {
+  text-align: center;
+  vertical-align: middle;
+  display: inherit;
+}
   .waiting {
     padding: 10px;
     color: #555;

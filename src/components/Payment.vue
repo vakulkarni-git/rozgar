@@ -1,4 +1,4 @@
-<template>
+ <template>
   <form>
   <div class="row">
   <div class="col-75">
@@ -76,7 +76,6 @@
   </form>
 </template>
 <script>
-  import parse from 'xml-parser'
   import postWorker from '@/mixins/postWorker'
   import JSPDF from 'jspdf'
 
@@ -84,21 +83,54 @@
     mixins: [postWorker],
     data () {
       return {
-        'workerUrl': null
+        'workerUrl': null,
+        labourer: null
       }
     },
     methods: {
       createPDF () {
         let pdfName = 'test'
         var doc = new JSPDF()
-        doc.text('Hello World', 10, 10)
+        doc.text('PAY INVOICE', 85, 15)
+        doc.line(10, 17, 200, 17)
+        doc.text('ROJGAR YOJNA', 10, 25)
+        doc.text('Where Potential Meets The Need', 10, 35)
+        doc.text('Invoice No. :', 10, 55)
+        doc.text('Invoice Date:', 150, 55)
+        doc.text('From:', 10, 75)
+        doc.text('To:', 150, 75)
+        doc.line(10, 115, 200, 115)
+        doc.line(10, 140, 200, 140)
+        doc.text('PERIOD', 12, 125)
+        doc.text('SECTOR', 60, 125)
+        doc.text('WAGES/DAY', 110, 125)
+        doc.text('TOTAL', 170, 125)
+        doc.line(10, 115, 10, 175)
+        doc.line(50, 115, 50, 175)
+        doc.line(100, 115, 100, 175)
+        doc.line(160, 115, 160, 175)
+        doc.line(200, 115, 200, 175)
+        doc.line(10, 175, 200, 175)
+        doc.text('SUBTOTAL', 125, 185)
+        doc.text('TAX', 142, 193)
+        doc.text('TOTAL', 137, 201)
+        doc.line(160, 175, 160, 203)
+        doc.line(200, 175, 200, 203)
+        doc.line(160, 203, 200, 203)
+        doc.line(160, 194, 200, 194)
+        doc.text('If you have any questions concerning this invoice,contact[Name,phone no.]', 12, 230)
+        doc.text('Thank You for your business!', 12, 245)
+        doc.line(10, 220, 200, 220)
+        doc.line(10, 255, 200, 255)
+        doc.line(10, 220, 10, 255)
+        doc.line(200, 220, 200, 255)
+        doc.line(10, 285, 200, 285)
+
         doc.save(pdfName + '.pdf')
       }
     },
     mounted () {
-      this.$http.get('https://thecatapi.com/api/images/get?format=xml&results_per_page=1').then(response => {
-        this.workerUrl = parse(response.body).root.children['0'].children['0'].children['0'].children['0'].content
-      })
+      this.labourer = this.$route.params.labourer
     }
   }
 </script>

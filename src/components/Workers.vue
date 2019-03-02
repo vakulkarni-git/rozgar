@@ -88,7 +88,7 @@
     mixins: [postWorkAppointment],
     methods: {
       displayDetails (id, from, to, labourer) {
-        this.$router.replace({name: 'confirmation', params: { id: id }, query: {from: from, to: to, labourer: labourer}})
+        this.$router.replace({name: 'confirmation', params: { id: id }, query: {from: from.toISOString(), to: to.toISOString(), labourer: labourer}})
       },
       getChosenWorker (from, to) {
         // var labourers = this.getLabourers()

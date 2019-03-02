@@ -91,6 +91,15 @@
           var id = this.labourer.id + this.otp
           this.postWorkAppointment('100', id, this.labourer.name, this.from, this.to, this.labourer.skill)
           this.postTimeline(id, new Date(), 'OTP confirmed, Work appointment created')
+          var buttons = {
+            type: 'primary',
+            href: '/payment/',
+            target: '#',
+            message: 'Pay'
+          }
+          var buttonsArray = []
+          buttonsArray[0] = buttons
+          this.postTimeline(id, new Date(), 'Work Completed, proceed to make payment', buttonsArray)
           this.$router.replace({name: 'workAppointments'})
         } else {
           console.log('confirmAppointment', 'otps do not match')

@@ -8,9 +8,10 @@
     <div class="mdl-layout__drawer">
       <span class="mdl-layout-title">Rozgar</span>
       <nav class="mdl-navigation">
-        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">SME</router-link>
+        <router-link class="mdl-navigation__link" to="/sme" @click.native="hideMenu">SME</router-link>
         <router-link class="mdl-navigation__link" to="/workAppointments" @click.native="hideMenu">Work Appointments</router-link>
-        <router-link class="mdl-navigation__link" to="/login" @click.native="hideMenu">Login</router-link>
+        <router-link class="mdl-navigation__link" to="/search" @click.native="hideMenu">Search by Skill</router-link>
+        <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Login</router-link>
         <router-link class="mdl-navigation__link" to="/aboutus" @click.native="hideMenu">About Us</router-link>
       </nav>
     </div>
