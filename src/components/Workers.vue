@@ -1,13 +1,19 @@
 <template>
   <!-- Main content -->
   <section class="content">
-    <div v-for="labourer in this.getLabourers()" @click="displayDetails(labourer['.key'], from, to, labourer)">
+    <div class="input-group mb-3" style="margin-top:20px;">
+  <input type="text" class="form-control" aria-label="Text input with dropdown" placeholder="Search by location" v-model="searchText">
+  <div class="input-group-append">
+    <button class="input-group-text" @click="forceRenderer">Search</button>
+  </div>
+</div>
+    <div v-for="labourer in this.getLabourers()" @click="displayDetails(labourer)" :key="labourerKey">
             <process-info-box color-class="bg-aqua"
                           :icon-classes="['ion', 'ion-ios-person']"
                           :text=labourer.name
                           :number=labourer.phone_number
-                          :progress=labourer.id/(Math.random()*10+1)
-                          description="Progress seen in the last 30 days"> </process-info-box>
+                          :progress=labourer.rating*20
+                          description="Avg rating earned"> </process-info-box>
     </div>
 
 
@@ -39,8 +45,12 @@
     },
     mixins: [postWorkAppointment],
     methods: {
-      displayDetails (id, from, to, labourer) {
-        this.$router.replace({name: 'confirmation', params: { id: id }, query: {from: from.toISOString(), to: to.toISOString(), labourer: labourer}})
+      displayDetails (labourer) {
+        this.$router.push({name: 'BookWorker', query: {workerAdvertisement: labourer, id: labourer.id, reference: this.reference}})
+      },
+      forceRenderer () {
+        console.log('forceRenderer')
+        this.labourerKey += 1
       },
       getChosenWorker (from, to) {
         // var labourers = this.getLabourers()
@@ -69,19 +79,18 @@
         return 'radio' + labourer.id
       },
       getLabourers () {
-        /*
-        if (navigator.onLine) {
-          this.saveLabourersToCache()
-          console.log('DetailView', JSON.stringify(this.labourers))
-          return this.labourers
-        } else {
-          console.log('DetailView', localStorage.getItem(this.worker.comment + 'labourers'))
-          return JSON.parse(localStorage.getItem(this.worker.comment + 'labourers'))
-        }
-        */
         if (localStorage.getItem(this.worker.comment + 'labourers')) {
           console.log('DetailView', localStorage.getItem(this.worker.comment + 'labourers'))
-          return JSON.parse(localStorage.getItem(this.worker.comment + 'labourers'))
+          var workers = JSON.parse(localStorage.getItem(this.worker.comment + 'labourers'))
+          var filtered = workers
+          if (this.searchText && this.searchText.length >= 3) {
+            filtered = workers.filter(worker => {
+              worker.place = 'place' in worker ? worker.place : ''
+              return worker.place.toLowerCase().includes(this.searchText.toLowerCase())
+            })
+            return filtered
+          }
+          return workers
         } else {
           this.saveLabourersToCache()
           console.log('DetailView', JSON.stringify(this.labourers))
@@ -114,8 +123,11 @@
         worker: null,
         labourerEntry: [],
         labourersRef: null,
+        labourerKey: 0,
         labourers: null,
         state: state,
+        searchText: '',
+        reference: '',
         disabledFromDates: {
           to: new Date()
         },
@@ -127,6 +139,7 @@
     mounted () {
       this.worker = find(this.$root.worker, (worker) => worker['.key'] === this.$route.params.id)
       this.saveLabourersToCache()
+      this.reference = this.$route.query.reference
     }
   }
 

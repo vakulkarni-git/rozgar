@@ -56,11 +56,6 @@
       ProcessInfoBox
     },
     mixins: [postWorkAppointment],
-    methods: {
-      displayDetails (id, from, to, labourer) {
-        this.$router.replace({name: 'confirmation', params: { id: id }, query: {from: from.toISOString(), to: to.toISOString(), labourer: labourer}})
-      }
-    },
     data () {
       return {
         workerAdvertisement: null,
@@ -69,6 +64,8 @@
         id: null,
         labourer: null,
         state: state,
+        workerId: '',
+        reference: '',
         disabledFromDates: {
           to: new Date()
         },
@@ -77,10 +74,17 @@
         }
       }
     },
+    methods: {
+      displayDetails (id, from, to, labourer) {
+        this.$router.replace({name: 'confirmation', params: { id: id }, query: {from: from.toISOString(), to: to.toISOString(), labourer: labourer, workerId: this.workerId, reference: this.reference}})
+      }
+    },
     mounted () {
       this.workerAdvertisement = this.$route.query.workerAdvertisement
       this.id = this.workerAdvertisement.id
       this.labourer = this.workerAdvertisement
+      this.workerId = this.$route.query.id
+      this.reference = this.$route.query.reference
     }
   }
 

@@ -9,7 +9,7 @@
                           :text=workAppointment.name
                           :number=workAppointment.id.toString()
                           :progress=workAppointment.id/(Math.random()*10+1)
-                          description="Total time to work completion"> </process-info-box>
+                          description="Work Appointment Id"> </process-info-box>
         </div>
       </div>
     </div>

@@ -3,7 +3,7 @@
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="picture in this.getWorkers()" class="image-card" @click="displayDetails(picture['.key'])">
+        <div v-for="picture in this.getWorkers()" class="image-card" @click="displayDetails(picture['.key'], picture.comment)">
           <div class="image-card__picture">
             <img :src="picture.url" />
           </div>
@@ -19,8 +19,8 @@
 <script>
   export default {
     methods: {
-      displayDetails (id) {
-        this.$router.replace({name: 'workers', params: { id: id }})
+      displayDetails (id, ref) {
+        this.$router.replace({name: 'workers', params: { id: id }, query: {reference: ref}})
       },
       getWorkers () {
         /*

@@ -47,13 +47,17 @@
         from: null,
         to: null,
         otp: null,
-        confirmOtp: null
+        confirmOtp: null,
+        workerId: '',
+        reference: ''
       }
     },
     mounted () {
       this.labourer = this.$route.query.labourer
       this.from = this.$route.query.from
       this.to = this.$route.query.to
+      this.workerId = this.$route.query.workerId
+      this.reference = this.$route.query.reference
     },
     destroyed () {
     },
@@ -89,7 +93,7 @@
         if (this.otp === this.confirmOtp.toString()) {
           console.log('confirmAppointment', 'otps match')
           var id = this.labourer.id + this.otp
-          this.postWorkAppointment('100', id, this.labourer.name, this.from, this.to, this.labourer.skill)
+          this.postWorkAppointment('100', id, this.labourer.name, this.from, this.to, this.labourer.skill, this.workerId, this.reference, this.labourer.key)
           this.postTimeline(id, new Date(), 'OTP confirmed, Work appointment created')
           var buttons = {
             type: 'primary',

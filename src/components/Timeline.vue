@@ -35,6 +35,22 @@
     },
     methods: {
       gotoPayment () {
+        var ref = database.ref(this.workAppointment.reference).orderByChild('id').equalTo(this.workAppointment.workerId)
+        ref.on('value', function (snapshot) {
+          snapshot.forEach(function (data) {
+            var value = data.val()
+            console.log(data.val())
+            var ratingAvg = 0
+            console.log(this.rating)
+            if ('rating' in value) {
+              ratingAvg = (value.rating + this.rating) / 2.0
+            } else {
+              ratingAvg = this.rating
+            }
+            console.log(ratingAvg)
+            ref.update({'rating': ratingAvg})
+          })
+        })
         this.$router.push({name: 'payment', params: {workAppointment: this.workAppointment}})
       },
       getTimeline () {
@@ -73,7 +89,7 @@
       return {
         id: null,
         workAppointment: null,
-        rating: null
+        rating: 0
       }
     },
     mounted () {
