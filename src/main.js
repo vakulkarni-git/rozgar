@@ -8,9 +8,11 @@ import App from './App'
 import router from './router'
 import { database } from '@/services/firebase'
 import VueAnalytics from 'vue-analytics'
+import VueSignaturePad from 'vue-signature-pad'
 
 Vue.use(Vuefire)
 Vue.use(VueResource)
+Vue.use(VueSignaturePad)
 Vue.use(VueAnalytics, {
   id: 'UA-101944993-1',
   router
