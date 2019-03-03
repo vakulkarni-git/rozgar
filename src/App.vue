@@ -14,6 +14,7 @@
         <router-link class="mdl-navigation__link" to="/" @click.native="hideMenu">Login</router-link>
         <router-link class="mdl-navigation__link" to="/labourer_registration" @click.native="hideMenu">Register as a Labourer</router-link>
         <router-link class="mdl-navigation__link" to="/aboutus" @click.native="hideMenu">About Us</router-link>
+        <router-link class="mdl-navigation__link" to="/" v-on:click.native="logout()" replace>Logout</router-link>
       </nav>
     </div>
     <main class="mdl-layout__content">
@@ -33,6 +34,10 @@
       hideMenu: function () {
         document.getElementsByClassName('mdl-layout__drawer')[0].classList.remove('is-visible')
         document.getElementsByClassName('mdl-layout__obfuscator')[0].classList.remove('is-visible')
+      },
+      logout () {
+        localStorage.removeItem('session_token')
+        this.hideMenu()
       }
     }
   }

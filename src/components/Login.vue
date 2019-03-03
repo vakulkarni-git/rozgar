@@ -16,7 +16,6 @@
         <div class="login-area">
         <form class="login-form top-label-form" id="login-login-form" accept-charset="UTF-8" method="post">
           <input name="utf8" type="hidden" value="✓">
-          <input type="hidden" name="authenticity_token" value="x7e74qMjT4lxEx5SIjlPIUvMO+fe0u9GoQB+a2b8ZPHvIpaxRmvflmoqkftJvz852+D04GebLgWj1FrYBJRaHA==">
   <div align="center" id="login-email" class="field">
     <label for="login-email-field">Username</label>
     <input type="text" name="email" id="login-email-field" value="" required="required">
@@ -36,9 +35,7 @@
   <div>
     <label class="spacing-label"></label>
     <div align="center" class="actions">
-        <router-link id="log-in-button" class="mdl-button mdl-js-button mdl-button--raised mdl-button--colored spinner" to="/sme">
-          Log in!
-        </router-link>
+        <button type="button" class="btn btn-primary" @click.prevent="login">Login</button>
       </div>  
   </div>
 
@@ -62,6 +59,12 @@
     data () {
       return {
         'workerUrl': null
+      }
+    },
+    methods: {
+      login () {
+        localStorage.setItem('session_token', 'EFG234-SDF123-SDFQW1')
+        this.$router.replace({'name': 'sme'})
       }
     },
     mounted () {

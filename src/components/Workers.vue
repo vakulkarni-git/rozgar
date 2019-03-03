@@ -1,54 +1,6 @@
 <template>
   <!-- Main content -->
   <section class="content">
-    <div class="row">
-
-      <!-- Info boxes -->
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <info-box color-class="bg-aqua"
-                  :icon-classes="['ion', 'ion-ios-gear-outline']"
-                  text="Employed"
-                  number="90%"></info-box>
-      </div>
-      <!-- /.col -->
-      <div class="col-md-3 col-sm-6 col-xs-12">
-        <info-box color-class="bg-red"
-                  :icon-classes="['ion', 'ion-clipboard']"
-                  text="Total Work Orders"
-                  number="41,410"></info-box>
-      </div>
-      <!-- /.col -->
-      <!-- /.col -->
-    </div>
-    <!-- /.row -->
-
-    <div class="col-xs-12">
-      <div class="input-group mb-3">
-      <div class="input-group-prepend">
-        <label class="input-group-text" for="inputGroupSelect01">Work Type</label>
-      </div>
-      <select class="custom-select" id="inputGroupSelect01">
-        <option selected>Choose...</option>
-        <option value="1">Work Quantum Basis</option>
-        <option value="2">Fixed Time Basis</option>
-      </select>
-      </div>
-    </div>
-
-    <div class="input-group mb-3">
-     <div class="input-group-prepend">
-       <span class="input-group-text" id="basic-addon1">Start Date</span>
-     </div>
-     <datepicker style="line-height:2;" v-model="from" name="fromdate" :disabledDates="disabledFromDates" placeholder="Pick a start date"></datepicker>
-    </div>
-
-    <div class="input-group mb-3">
-     <div class="input-group-prepend">
-       <span class="input-group-text" id="basic-addon1">End Date</span>
-     </div>
-     <datepicker style="line-height:2;" v-model="to" name="todate" :disabledDates="disabledFromDates" placeholder="Pick an end date"></datepicker>
-    </div>
-
     <div v-for="labourer in this.getLabourers()" @click="displayDetails(labourer['.key'], from, to, labourer)">
             <process-info-box color-class="bg-aqua"
                           :icon-classes="['ion', 'ion-ios-person']"

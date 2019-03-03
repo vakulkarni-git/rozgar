@@ -10,8 +10,6 @@ import WorkAppointments from '@/components/WorkAppointments'
 import DrawingSheet from '@/components/DrawingSheet'
 import Confirmation from '@/components/Confirmation'
 import Timeline from '@/components/Timeline'
-import WorkersNew from '@/components/WorkersNew'
-import Search from '@/components/Search'
 import WorkerAdvertisements from '@/components/WorkerAdvertisements'
 import BookWorker from '@/components/BookWorker'
 import LabourerRegistration from '@/components/LabourerRegistration'
@@ -33,67 +31,68 @@ export default new Router({
     {
       path: '/sme',
       name: 'sme',
-      component: SME
+      component: SME,
+      meta: {description: 'List of SMEs', requiresAuth: true}
     },
     {
       path: '/workers/:id',
       name: 'workers',
-      component: Workers
-    },
-    {
-      path: '/workers_new/:id',
-      name: 'workers_new',
-      component: WorkersNew
+      component: Workers,
+      meta: {description: 'List of Workers', requiresAuth: true}
     },
     {
       path: '/confirmation/:id',
       name: 'confirmation',
-      component: Confirmation
+      component: Confirmation,
+      meta: {description: 'Confirmation of work appointment', requiresAuth: true}
     },
     {
       path: '/payment',
       name: 'payment',
-      component: Payment
+      component: Payment,
+      meta: {description: 'Payment page', requiresAuth: true}
     },
     {
       path: '/workAppointments',
       name: 'workAppointments',
-      component: WorkAppointments
+      component: WorkAppointments,
+      meta: {description: 'Work Appointments page', requiresAuth: true}
     },
     {
       path: '/timeline',
       name: 'timeline',
-      component: Timeline
-    },
-    {
-      path: '/search',
-      name: 'search',
-      component: Search
+      component: Timeline,
+      meta: {description: 'Timeline of the appointment', requiresAuth: true}
     },
     {
       path: '/DrawingSheet',
       name: 'DrawingSheet',
-      component: DrawingSheet
+      component: DrawingSheet,
+      meta: {description: 'Signature page', requiresAuth: true}
     },
     {
       path: '/workerAdvertisements',
       name: 'WorkerAdvertisements',
-      component: WorkerAdvertisements
+      component: WorkerAdvertisements,
+      meta: {description: 'Self advertisements page', requiresAuth: true}
     },
     {
       path: '/book_worker',
       name: 'BookWorker',
-      component: BookWorker
+      component: BookWorker,
+      meta: {description: 'Book a worker', requiresAuth: true}
     },
     {
       path: '/labourer_registration',
       name: 'LabourerRegistration',
-      component: LabourerRegistration
+      component: LabourerRegistration,
+      meta: {description: 'Register a labourer'}
     },
     {
       path: '/aboutus',
       name: 'aboutus',
-      component: AboutUs
+      component: AboutUs,
+      meta: {description: 'About Us'}
     }
   ]
 })

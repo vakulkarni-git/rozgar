@@ -19,6 +19,20 @@ Vue.use(VueAnalytics, {
 })
 Vue.config.productionTip = false
 
+router.beforeEach((to, from, next) => {
+  if (
+    to.matched.some(record => record.meta.requiresAuth) &&
+    !(localStorage.getItem('session_token'))
+  ) {
+    // this route requires auth, check if logged in
+    // if not, redirect to login page.
+    window.console.log('Not authenticated')
+    router.replace({'name': 'login'})
+  } else {
+    next()
+  }
+})
+
 /* eslint-disable no-new */
 new Vue({
   el: '#app',
