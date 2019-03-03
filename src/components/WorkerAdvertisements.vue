@@ -1,9 +1,22 @@
 <template>
   <div>
+    <div class="input-group mb-3" style="margin-top:20px;">
+  <div class="input-group-prepend">
+    <select class="custom-select" id="inputGroupSelect01" v-model="criteria">
+        <option selected>Search by</option>
+        <option value="skill">Skill</option>
+        <option value="location">Location</option>
+      </select>
+  </div>
+  <input type="text" class="form-control" aria-label="Text input with dropdown" placeholder="Search Text" v-model="searchText">
+  <div class="input-group-append">
+    <button class="input-group-text" @click="forceRenderer">Search</button>
+  </div>
+</div>
     <div class="mdl-grid">
       <div class="mdl-cell mdl-cell--3-col mdl-cell mdl-cell--1-col-tablet mdl-cell--hide-phone"></div>
       <div class="mdl-cell mdl-cell--6-col mdl-cell--4-col-phone">
-        <div v-for="workerAdvertisement in this.getWorkerAdvertisements()" @click="displayDetails(workerAdvertisement)">
+        <div v-for="workerAdvertisement in this.getWorkerAdvertisements()" @click="displayDetails(workerAdvertisement)" :key="advtKey">
           <worker-advertisement-box color-class="bg-red"
                           :icon-classes="['ion', 'ion-ios-person']"
                           :text=workerAdvertisement.name
@@ -31,11 +44,21 @@
       ProcessInfoBox,
       WorkerAdvertisementBox
     },
+    data () {
+      return {
+        advtKey: 0
+      }
+    },
     methods: {
       displayDetails (workerAdvertisement) {
         this.$router.push({name: 'BookWorker', query: {workerAdvertisement: workerAdvertisement}})
       },
+      forceRenderer () {
+        console.log('forceRenderer')
+        this.advtKey += 1
+      },
       getWorkerAdvertisements () {
+        console.log('getWorkerAdvertisements')
         /*
         if (navigator.onLine) {
           this.saveWorkAppointmentsToCache()
@@ -48,13 +71,32 @@
         */
         if (localStorage.getItem('workerAdvertisements')) {
           console.log('workerAdvertisements', localStorage.getItem('workerAdvertisements'))
-          return JSON.parse(localStorage.getItem('workerAdvertisements'))
+          var advts = JSON.parse(localStorage.getItem('workerAdvertisements'))
+          var filtered = advts
+          if (this.searchText && this.searchText.length >= 3) {
+            if (this.criteria === 'location') {
+              filtered = advts.filter(advt => {
+                advt.place = 'place' in advt ? advt.place : ''
+                return advt.place.toLowerCase().includes(this.searchText.toLowerCase())
+              })
+            } else if (this.criteria === 'skill') {
+              filtered = advts.filter(advt => {
+                var combinedSkill = 'skill1' in advt ? advt.skill1 : ''
+                combinedSkill += 'skill2' in advt ? advt.skill2 : ''
+                combinedSkill += 'skill3' in advt ? advt.skill3 : ''
+                return combinedSkill.toLowerCase().includes(this.searchText.toLowerCase())
+              })
+            }
+            return filtered
+          }
+          return advts
         } else {
           this.saveWorkAdvertisementsToCache()
           return this.$root.workerAdvertisement
         }
       },
       saveWorkAdvertisementsToCache () {
+        console.log('saveWorkAdvertisementsToCache')
         this.$root.$firebaseRefs.workerAdvertisement.once('value', (snapshot) => {
           let cachedWorkerAdvertisements = []
           snapshot.forEach((workerAdvertisementSnapshot) => {
@@ -67,6 +109,7 @@
       }
     },
     mounted () {
+      console.log('mounted')
       this.saveWorkAdvertisementsToCache()
     }
   }
